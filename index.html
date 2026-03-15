@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Disease Prediction System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="hero">
+
+<h1>Disease Prediction System</h1>
+
+<p>
+AI powered platform that helps detect possible diseases 
+based on user health data and symptoms.
+</p>
+
+<a href="predict.html">
+<button class="start-btn">Start Prediction</button>
+</a>
+
+</div>
+
+<div class="features">
+
+<div class="card">
+<h3>AI Analysis</h3>
+<p>Uses machine learning to analyze health data.</p>
+</div>
+
+<div class="card">
+<h3>Fast Prediction</h3>
+<p>Get instant disease risk prediction.</p>
+</div>
+
+<div class="card">
+<h3>Health Awareness</h3>
+<p>Helps people detect diseases early.</p>
+</div>
+
+</div>
+<h2 id="displayResult" style="margin-top: 20px; font-weight: bold;"></h2>
+    <a href="suggestions.html" id="suggestBtn" class="start-btn" style="display: none; text-decoration: none; background: #ffcc00; color: black; margin-top: 10px;">View Health Suggestions</a>
+
+    <script>
+        function calculateResult() {
+            var g = document.getElementById('glucose').value;
+            var b = document.getElementById('bp').value;
+            var bmi = document.getElementById('bmi').value;
+            var a = document.getElementById('age').value;
+            var res = document.getElementById('displayResult');
+            var sBtn = document.getElementById('suggestBtn');
+
+            if (g === "" || b === "" || bmi === "" || a === "") {
+                alert("Please fill all details!");
+                return;
+            }
+
+            // Logic check
+            if (g > 125 || bmi > 30 || b > 90) {
+                res.innerHTML = "Result: High Risk";
+                res.style.color = "red";
+            } else if (a > 45 && g > 110) {
+                res.innerHTML = "Result: Moderate Risk";
+                res.style.color = "orange";
+            } else {
+                res.innerHTML = "Result: Normal (Healthy)";
+                res.style.color = "lime";
+            }
+
+            // Result aane ke baad button dikhayein
+            sBtn.style.display = "inline-block";
+        }
+    </script>
+</body>
+</html>
+</body>
+
+</html>

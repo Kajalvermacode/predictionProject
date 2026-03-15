@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predict Disease</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hero">
+        <h1>Enter Health Details</h1>
+        
+        <div style="display: flex; flex-direction: column; max-width: 400px; margin: auto; gap: 15px;">
+            <input type="number" id="glucose" placeholder="Glucose Level" style="padding: 10px; border-radius: 5px; border: none; color: black;">
+            <input type="number" id="bp" placeholder="Blood Pressure" style="padding: 10px; border-radius: 5px; border: none; color: black;">
+            <input type="number" id="bmi" placeholder="BMI" style="padding: 10px; border-radius: 5px; border: none; color: black;">
+            <input type="number" id="age" placeholder="Age" style="padding: 10px; border-radius: 5px; border: none; color: black;">
+            
+            <button onclick="calculateResult()" class="start-btn">Get Result</button>
+        </div>
+
+        <h2 id="displayResult" style="margin-top: 20px; font-weight: bold; min-height: 30px;"></h2>
+        
+        <a href="suggestions.html" id="suggestBtn" class="start-btn" style="display: none; text-decoration: none; background: #ffcc00; color: black; margin-top: 10px;">View Health Suggestions</a>
+        
+        <br><br>
+        <a href="index.html" style="color: white;">Go Back</a>
+    </div>
+
+    <script>
+        function calculateResult() {
+            // Values pick karna
+            var g = document.getElementById('glucose').value;
+            var b = document.getElementById('bp').value;
+            var bmi = document.getElementById('bmi').value;
+            var a = document.getElementById('age').value;
+            var res = document.getElementById('displayResult');
+            var sBtn = document.getElementById('suggestBtn');
+
+            // Agar koi box khali hai
+            if (g === "" || b === "" || bmi === "" || a === "") {
+                alert("Please fill all details!");
+                return;
+            }
+
+            // Logic calculation
+            if (g > 125 || bmi > 30 || b > 90) {
+                res.innerHTML = "Result: High Risk Detected";
+                res.style.color = "#ff4d4d"; 
+            } else if (a > 45 && g > 110) {
+                res.innerHTML = "Result: Moderate Risk Detected";
+                res.style.color = "orange";
+            } else {
+                res.innerHTML = "Result: Normal (Healthy)";
+                res.style.color = "#2ecc71";
+            }
+
+            // Button dikhana
+            sBtn.style.display = "inline-block";
+        }
+    </script>
+    
+</body>
+</html>
